@@ -16,7 +16,8 @@ struct Airport: Equatable {
     }
     init?(name: String, city: String, country: String, iata3: String, latitude latStr: String, longitude longStr: String) {
         guard let latitude = Double(latStr),
-            let longitude = Double(longStr) else {
+            let longitude = Double(longStr),
+            iata3 != "\\N" else {
                 return nil
         }
         self.latitude = latitude

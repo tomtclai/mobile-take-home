@@ -26,8 +26,8 @@ struct CSVReader: CSVReaderProtocol {
     }
     
     private func parseCSVString(_ str: String) -> [[String]] {
-        var rows = str.components(separatedBy: "\n")
+        var rows = str.replacingOccurrences(of: "\r", with: "").components(separatedBy: "\n")
         rows.removeFirst() // drop the header row
-        return rows.map{ $0.components(separatedBy: ",").map{ return $0.replacingOccurrences(of: "\\\\", with: "\\") } }
+        return rows.map{ $0.components(separatedBy: ",").map{ return $0 } }
     }
 }
