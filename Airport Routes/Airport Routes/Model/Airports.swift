@@ -1,6 +1,6 @@
 import Foundation
 struct Airports {
-    var byAirportCode: [String: Airport]
+    let byAirportCode: [String: Airport]
     init(airports: [Airport]) {
         byAirportCode = airports.reduce([String: Airport]()) { dict, airport in
             var dictionary = dict

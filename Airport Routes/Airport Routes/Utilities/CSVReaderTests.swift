@@ -17,6 +17,7 @@ class CSVReaderTests: XCTestCase {
         let parsedCSV = reader.parseCSV(filename: "airports")
         XCTAssertNotNil(parsedCSV)
         XCTAssertEqual(parsedCSV?.first?.count, 6)
+        XCTAssertEqual(parsedCSV?.count, 7184)
     }
     
     func testReadingRoutes() {
