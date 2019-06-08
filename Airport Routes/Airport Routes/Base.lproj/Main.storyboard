@@ -73,6 +73,7 @@
                     </view>
                     <connections>
                         <outlet property="destinationField" destination="VCx-11-zIv" id="dlk-8s-AZw"/>
+                        <outlet property="mapView" destination="cMx-8A-g10" id="r44-SX-dTG"/>
                         <outlet property="originField" destination="rfJ-HN-iGR" id="PXX-R4-8V9"/>
                     </connections>
                 </viewController>

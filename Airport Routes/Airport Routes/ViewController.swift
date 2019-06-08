@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
 
@@ -23,10 +24,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var originField: UITextField!
     @IBOutlet weak var destinationField: UITextField!
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        mapView.delegate = self
     }
     
     @IBAction func searchTapped() {
@@ -45,7 +48,7 @@ class ViewController: UIViewController {
             switch result {
             case .failure(let reason):
                 switch reason {
-                case .noRoutes:
+                case .noRoutes, .dataSourceError:
                     presentAlert(title: UserStrings.Alert.sorry, message: UserStrings.Alert.weCouldntFindARoute(between: origin, and: dest))
                 case .noSuchAirport(let airport):
                     presentAlert(title: UserStrings.Alert.weCouldntFindThisAirport(airport), message: UserStrings.Alert.tryAgain)
@@ -58,6 +61,9 @@ class ViewController: UIViewController {
         })
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        mapView.delegate = nil
+    }
     // IBActions
     
     
@@ -119,4 +125,8 @@ private extension UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+}
+
+extension ViewController: MKMapViewDelegate {
+    
 }

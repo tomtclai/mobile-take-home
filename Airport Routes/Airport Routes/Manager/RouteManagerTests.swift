@@ -18,22 +18,54 @@ class RouteManagerTests: XCTestCase {
                                                             Route(origin: "COT", destination: "PDX")]),
                                     airports: Airports(airports: ["SEA", "VVX", "COT", "PDX", "SVG"].map(Airport.init)))
     }
-
+    
     func testShortestPathWith3Legs() {
-        let shortestPath = routeManager.shortestPathBetween(originCode: "SEA", destinationCode: "PDX")
-        XCTAssertEqual(shortestPath, [Route(origin: "SEA", destination: "VVX"),
-                                      Route(origin: "VVX", destination: "COT"),
-                                      Route(origin: "COT", destination: "PDX")])
+        let expectation = XCTestExpectation(description: "route manager returns routes")
+        routeManager.shortestPathBetween(originCode: "SEA", destinationCode: "PDX", completion: { result in
+            switch result {
+            case .success(let paths):
+                XCTAssertEqual(paths, [Route(origin: "SEA", destination: "VVX"),
+                                       Route(origin: "VVX", destination: "COT"),
+                                       Route(origin: "COT", destination: "PDX")])
+            case .failure:
+                XCTFail("testShortestPathWith3Legs should not fail")
+            }
+            expectation.fulfill()
+        })
+        
     }
     
     func testShortestPathWith1Leg() {
-        let shortestPath = routeManager.shortestPathBetween(originCode: "COT", destinationCode: "PDX")
-        XCTAssertEqual(shortestPath, [Route(origin: "COT", destination: "PDX")])
+        routeManager.shortestPathBetween(originCode: "COT", destinationCode: "PDX", completion: { result in
+            switch result {
+                case .success(let paths):
+                XCTAssertEqual(paths, [Route(origin: "COT", destination: "PDX")])
+            case .failure:
+                XCTFail("testShortestPathWith1Leg should not fail")
+            }
+        })
+    }
+    
+    func testShortestPathWithSameAirport() {
+        routeManager.shortestPathBetween(originCode: "PDX", destinationCode: "PDX", completion: { result in
+            switch result {
+            case .success:
+                XCTFail("testShortestPathWithSameAirport should not succeed")
+            case .failure(let error):
+                XCTAssertEqual(error, .noRoutes)
+            }
+        })
     }
     
     func testShortestPathWithNoLegs() {
-        let shortestPath = routeManager.shortestPathBetween(originCode: "PDX", destinationCode: "SEA")
-        XCTAssertEqual(shortestPath, [])
+        routeManager.shortestPathBetween(originCode: "PDX", destinationCode: "SVG", completion: { result in
+            switch result {
+            case .success:
+                XCTFail("testShortestPathWithNoLegs should not succeed")
+            case .failure(let error):
+                XCTAssertEqual(error, .noRoutes)
+            }
+        })
     }
 }
 

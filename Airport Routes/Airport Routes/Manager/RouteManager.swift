@@ -2,11 +2,27 @@
 //  Class to figure out shortest routes
 
 import Foundation
-enum RouteManagerError: Error {
+enum RouteManagerError: Error, Equatable {
     case noRoutes
     case noSuchAirport(String)
     case unwrappingError
+    case dataSourceError
 }
+
+// Normally sourcery is used for this, except for this project we are not using third party library.
+func ==(lhs: RouteManagerError, rhs: RouteManagerError) -> Bool {
+    switch (lhs, rhs) {
+    case (.noRoutes, .noRoutes),
+         (.unwrappingError, .unwrappingError),
+         (.dataSourceError, .dataSourceError):
+        return true
+    case let (.noSuchAirport(a), .noSuchAirport(b)):
+        return a == b
+    default:
+        return false
+    }
+}
+
 protocol RouteManagerProtocol {
     typealias Handler = (Result<[Route], RouteManagerError>) -> Void
     func shortestPathBetween(originCode: String, destinationCode destCode: String, completion: Handler)
@@ -65,8 +81,13 @@ class RouteManager: RouteManagerProtocol {
             airportToVisit.append(contentsOf: destinations)
             
             for route in reachableFromThisAirport {
-                if dikstraTable[route.destination]!.distance > dikstraTable[source]!.distance + 1 {
-                    dikstraTable[route.destination]!.distance = dikstraTable[source]!.distance + 1
+                guard let dikstraDest = dikstraTable[route.destination],
+                    let dikstraSource = dikstraTable[route.origin] else {
+                        completion(.failure(.dataSourceError))
+                        return
+                }
+                if dikstraDest.distance > dikstraSource.distance + 1 {
+                    dikstraTable[route.destination]!.distance = dikstraSource.distance + 1
                     dikstraTable[route.destination]!.path = route
                 }
             }
