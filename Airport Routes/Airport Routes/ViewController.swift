@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var originField: UITextField!
     @IBOutlet weak var destinationField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,20 +45,23 @@ class ViewController: UIViewController {
                 presentAlert(title: UserStrings.Alert.tryAgain, message: UserStrings.Alert.typeAirportCode)
                 return
         }
-        routeManager.shortestPathBetween(originCode: origin, destinationCode: dest, completion: { result in
+        
+        spinner.startAnimating()
+        routeManager.shortestPathBetween(originCode: origin, destinationCode: dest, completion: { [weak self] result in
             switch result {
             case .failure(let reason):
                 switch reason {
                 case .noRoutes, .dataSourceError:
-                    presentAlert(title: UserStrings.Alert.sorry, message: UserStrings.Alert.weCouldntFindARoute(between: origin, and: dest))
+                    self?.presentAlert(title: UserStrings.Alert.sorry, message: UserStrings.Alert.weCouldntFindARoute(between: origin, and: dest))
                 case .noSuchAirport(let airport):
-                    presentAlert(title: UserStrings.Alert.weCouldntFindThisAirport(airport), message: UserStrings.Alert.tryAgain)
+                    self?.presentAlert(title: UserStrings.Alert.weCouldntFindThisAirport(airport), message: UserStrings.Alert.tryAgain)
                 case .unwrappingError:
-                    presentAlert(title: UserStrings.Alert.somethingWentWrong, message: UserStrings.Alert.tryAgain)
+                    self?.presentAlert(title: UserStrings.Alert.somethingWentWrong, message: UserStrings.Alert.tryAgain)
                 }
             case .success(let paths):
                 print(paths)
             }
+            self?.spinner.stopAnimating()
         })
     }
     

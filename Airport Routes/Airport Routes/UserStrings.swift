@@ -9,7 +9,7 @@ enum UserStrings {
             return "We couldn't find a route between \(orig) and \(dest)"
         }
         static func weCouldntFindThisAirport(_ airport: String) -> String {
-            return "We couldn't find this airport \(airport)"
+            return "We couldn't find this airport: \(airport)"
         }
     }
 }

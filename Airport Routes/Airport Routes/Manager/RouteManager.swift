@@ -25,7 +25,7 @@ func ==(lhs: RouteManagerError, rhs: RouteManagerError) -> Bool {
 
 protocol RouteManagerProtocol {
     typealias Handler = (Result<[Route], RouteManagerError>) -> Void
-    func shortestPathBetween(originCode: String, destinationCode destCode: String, completion: Handler)
+    func shortestPathBetween(originCode: String, destinationCode destCode: String, completion: @escaping Handler)
 }
 class RouteManager: RouteManagerProtocol {
     let routes: Routes
@@ -48,8 +48,18 @@ class RouteManager: RouteManagerProtocol {
             distance = Int.max
         }
     }
-    
-    func shortestPathBetween(originCode: String, destinationCode destCode: String, completion: Handler){
+    func shortestPathBetween(originCode: String, destinationCode destCode: String, completion: @escaping Handler){
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let sSelf = self else { return }
+            sSelf.shortestPathBetweenHelper(originCode: originCode, destinationCode: destCode, completion: { result in
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            })
+        }
+    }
+    func shortestPathBetweenHelper(originCode: String, destinationCode destCode: String, completion: Handler){
+        
         guard let origin = airports.byAirportCode[originCode] else { completion(.failure(.noSuchAirport(originCode)))
             return
         }
@@ -66,13 +76,13 @@ class RouteManager: RouteManagerProtocol {
         while !airportToVisit.isEmpty {
             let source = airportToVisit.removeFirst()
             guard nil != dikstraTable[source] else {
-                completion(.failure(.unwrappingError))
-                return
+                print("FIXME: Route dataset contains airport code \(source) but it is not in the airport dataset")
+                continue
             }
             dikstraTable[source]!.distance = 0
             
             guard let reachableFromThisAirport = routes.byOrigin[source] else {
-                print("Nothing is reachable from this airport")
+//                 print("Nothing is reachable from this airport")
                 break
             }
             
@@ -81,10 +91,13 @@ class RouteManager: RouteManagerProtocol {
             airportToVisit.append(contentsOf: destinations)
             
             for route in reachableFromThisAirport {
-                guard let dikstraDest = dikstraTable[route.destination],
-                    let dikstraSource = dikstraTable[route.origin] else {
-                        completion(.failure(.dataSourceError))
-                        return
+                guard let dikstraSource = dikstraTable[route.origin] else {
+                    print("FIXME: Route dataset contains airport code \(route.origin) but it is not in the airport dataset")
+                        continue
+                }
+                guard let dikstraDest = dikstraTable[route.destination] else {
+                    print("FIXME: Route dataset contains airport code \(route.destination) but it is not in the airport dataset")
+                        continue
                 }
                 if dikstraDest.distance > dikstraSource.distance + 1 {
                     dikstraTable[route.destination]!.distance = dikstraSource.distance + 1
