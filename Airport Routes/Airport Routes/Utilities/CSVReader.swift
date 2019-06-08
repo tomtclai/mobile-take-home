@@ -7,7 +7,11 @@
 //
 
 import Foundation
-struct CSVReader {
+protocol CSVReaderProtocol {
+    func parseCSV(filename: String) -> [[String]]?
+}
+
+struct CSVReader: CSVReaderProtocol {
     func parseCSV(filename: String) -> [[String]]? {
         guard let filePath = Bundle.main.path(forResource: filename, ofType: "csv", inDirectory: "data")  else  {
             print("no file found")

@@ -24,4 +24,9 @@ class CSVReaderTests: XCTestCase {
         XCTAssertNotNil(parsedCSV)
         XCTAssertEqual(parsedCSV?.first?.count, 3)
     }
+    
+    func testReadingFileThatDoesNotExist() {
+        let parsedCSV = reader.parseCSV(filename: "somethingElse")
+        XCTAssertNil(parsedCSV)
+    }
 }
