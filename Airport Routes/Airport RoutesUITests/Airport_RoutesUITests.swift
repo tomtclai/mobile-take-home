@@ -1,6 +1,6 @@
 //
-//  TakeHomeTestUITests.swift
-//  TakeHomeTestUITests
+//  Airport_RoutesUITests.swift
+//  Airport RoutesUITests
 //
 //  Created by Tom Lai on 6/8/19.
 //  Copyright © 2019 Tom Lai. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class TakeHomeTestUITests: XCTestCase {
+class Airport_RoutesUITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
