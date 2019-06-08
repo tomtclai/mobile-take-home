@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77601AD522AC11F4002A6168 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 77601AD422AC11F4002A6168 /* data */; };
+		77601AD822AC1E7A002A6168 /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77601AD722AC1E7A002A6168 /* Airport.swift */; };
+		77601ADB22AC1FE1002A6168 /* CSVReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77601ADA22AC1FE1002A6168 /* CSVReader.swift */; };
+		77601ADE22AC2184002A6168 /* CSVReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77601ADD22AC2184002A6168 /* CSVReaderTests.swift */; };
+		77601AE022AC22F9002A6168 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 77601AD422AC11F4002A6168 /* data */; };
+		77601AE222AC2544002A6168 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77601AE122AC2544002A6168 /* TestData.swift */; };
 		778EC9EC22AC1120001DD658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EC9EB22AC1120001DD658 /* AppDelegate.swift */; };
 		778EC9EE22AC1120001DD658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EC9ED22AC1120001DD658 /* ViewController.swift */; };
 		778EC9F122AC1120001DD658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 778EC9EF22AC1120001DD658 /* Main.storyboard */; };
@@ -34,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77601AD422AC11F4002A6168 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../data; sourceTree = "<group>"; };
+		77601AD722AC1E7A002A6168 /* Airport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport.swift; sourceTree = "<group>"; };
+		77601ADA22AC1FE1002A6168 /* CSVReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReader.swift; sourceTree = "<group>"; };
+		77601ADD22AC2184002A6168 /* CSVReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReaderTests.swift; sourceTree = "<group>"; };
+		77601AE122AC2544002A6168 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		778EC9E822AC1120001DD658 /* Airport Routes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airport Routes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EC9EB22AC1120001DD658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		778EC9ED22AC1120001DD658 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,9 +85,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77601AD622AC1E5D002A6168 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				77601AD722AC1E7A002A6168 /* Airport.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		77601AD922AC1FBD002A6168 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		77601ADC22AC1FF8002A6168 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				77601ADA22AC1FE1002A6168 /* CSVReader.swift */,
+				77601ADD22AC2184002A6168 /* CSVReaderTests.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		778EC9DF22AC1120001DD658 = {
 			isa = PBXGroup;
 			children = (
+				77601AD422AC11F4002A6168 /* data */,
 				778EC9EA22AC1120001DD658 /* Airport Routes */,
 				778EC9FF22AC1124001DD658 /* Airport RoutesTests */,
 				778ECA0A22AC1124001DD658 /* Airport RoutesUITests */,
@@ -97,6 +133,9 @@
 		778EC9EA22AC1120001DD658 /* Airport Routes */ = {
 			isa = PBXGroup;
 			children = (
+				77601ADC22AC1FF8002A6168 /* Utilities */,
+				77601AD922AC1FBD002A6168 /* Service */,
+				77601AD622AC1E5D002A6168 /* Model */,
 				778EC9EB22AC1120001DD658 /* AppDelegate.swift */,
 				778EC9ED22AC1120001DD658 /* ViewController.swift */,
 				778EC9EF22AC1120001DD658 /* Main.storyboard */,
@@ -111,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				778ECA0022AC1124001DD658 /* Airport_RoutesTests.swift */,
+				77601AE122AC2544002A6168 /* TestData.swift */,
 				778ECA0222AC1124001DD658 /* Info.plist */,
 			);
 			path = "Airport RoutesTests";
@@ -231,6 +271,7 @@
 			files = (
 				778EC9F622AC1124001DD658 /* LaunchScreen.storyboard in Resources */,
 				778EC9F322AC1124001DD658 /* Assets.xcassets in Resources */,
+				77601AD522AC11F4002A6168 /* data in Resources */,
 				778EC9F122AC1120001DD658 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77601AE022AC22F9002A6168 /* data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +298,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77601AD822AC1E7A002A6168 /* Airport.swift in Sources */,
+				77601ADB22AC1FE1002A6168 /* CSVReader.swift in Sources */,
 				778EC9EE22AC1120001DD658 /* ViewController.swift in Sources */,
 				778EC9EC22AC1120001DD658 /* AppDelegate.swift in Sources */,
 			);
@@ -265,7 +309,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77601AE222AC2544002A6168 /* TestData.swift in Sources */,
 				778ECA0122AC1124001DD658 /* Airport_RoutesTests.swift in Sources */,
+				77601ADE22AC2184002A6168 /* CSVReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
