@@ -51,10 +51,3 @@ class AirportServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.5)
     }
 }
-
-private class FakeCSVReader: CSVReaderProtocol {
-    public var readerResponse: [[String]]?
-    func parseCSV(filename: String) -> [[String]]? {
-        return readerResponse
-    }
-}

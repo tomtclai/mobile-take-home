@@ -1,4 +1,3 @@
-import Foundation
 struct Airports {
     let byAirportCode: [String: Airport]
     init(airports: [Airport]) {
