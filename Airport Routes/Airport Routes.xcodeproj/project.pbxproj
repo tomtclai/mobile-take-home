@@ -27,6 +27,9 @@
 		7765843522AC3C8600E8D9F8 /* RouteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843422AC3C8600E8D9F8 /* RouteServiceTests.swift */; };
 		7765843822AC3DE400E8D9F8 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843722AC3DE400E8D9F8 /* RouteManager.swift */; };
 		7765843A22AC4AC200E8D9F8 /* RouteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843922AC4AC100E8D9F8 /* RouteManagerTests.swift */; };
+		7765843C22AC5AB400E8D9F8 /* UserStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843B22AC5AB300E8D9F8 /* UserStrings.swift */; };
+		7765843E22AC66C300E8D9F8 /* String+CSVQuotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843D22AC66C300E8D9F8 /* String+CSVQuotes.swift */; };
+		7765844022AC66E800E8D9F8 /* String+CSVQuotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843F22AC66E800E8D9F8 /* String+CSVQuotesTests.swift */; };
 		778EC9EC22AC1120001DD658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EC9EB22AC1120001DD658 /* AppDelegate.swift */; };
 		778EC9EE22AC1120001DD658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EC9ED22AC1120001DD658 /* ViewController.swift */; };
 		778EC9F122AC1120001DD658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 778EC9EF22AC1120001DD658 /* Main.storyboard */; };
@@ -73,6 +76,9 @@
 		7765843422AC3C8600E8D9F8 /* RouteServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteServiceTests.swift; sourceTree = "<group>"; };
 		7765843722AC3DE400E8D9F8 /* RouteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
 		7765843922AC4AC100E8D9F8 /* RouteManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteManagerTests.swift; sourceTree = "<group>"; };
+		7765843B22AC5AB300E8D9F8 /* UserStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStrings.swift; sourceTree = "<group>"; };
+		7765843D22AC66C300E8D9F8 /* String+CSVQuotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CSVQuotes.swift"; sourceTree = "<group>"; };
+		7765843F22AC66E800E8D9F8 /* String+CSVQuotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CSVQuotesTests.swift"; sourceTree = "<group>"; };
 		778EC9E822AC1120001DD658 /* Airport Routes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airport Routes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EC9EB22AC1120001DD658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		778EC9ED22AC1120001DD658 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +144,8 @@
 			children = (
 				77601ADA22AC1FE1002A6168 /* CSVReader.swift */,
 				77601ADD22AC2184002A6168 /* CSVReaderTests.swift */,
+				7765843D22AC66C300E8D9F8 /* String+CSVQuotes.swift */,
+				7765843F22AC66E800E8D9F8 /* String+CSVQuotesTests.swift */,
 				7765841E22AC35D400E8D9F8 /* FakeCSVReader.swift */,
 			);
 			path = Utilities;
@@ -236,6 +244,7 @@
 				77601AD622AC1E5D002A6168 /* Model */,
 				778EC9EB22AC1120001DD658 /* AppDelegate.swift */,
 				778EC9ED22AC1120001DD658 /* ViewController.swift */,
+				7765843B22AC5AB300E8D9F8 /* UserStrings.swift */,
 				778EC9EF22AC1120001DD658 /* Main.storyboard */,
 				778EC9F222AC1124001DD658 /* Assets.xcassets */,
 				778EC9F422AC1124001DD658 /* LaunchScreen.storyboard */,
@@ -403,10 +412,12 @@
 				778EC9EE22AC1120001DD658 /* ViewController.swift in Sources */,
 				7765842722AC368800E8D9F8 /* AirlineService.swift in Sources */,
 				7765843822AC3DE400E8D9F8 /* RouteManager.swift in Sources */,
+				7765843E22AC66C300E8D9F8 /* String+CSVQuotes.swift in Sources */,
 				778EC9EC22AC1120001DD658 /* AppDelegate.swift in Sources */,
 				7765842922AC376000E8D9F8 /* Airlines.swift in Sources */,
 				7765842E22AC391C00E8D9F8 /* RouteService.swift in Sources */,
 				7765843022AC393D00E8D9F8 /* Route.swift in Sources */,
+				7765843C22AC5AB400E8D9F8 /* UserStrings.swift in Sources */,
 				77601AE622AC2726002A6168 /* Airports.swift in Sources */,
 				7765842522AC365400E8D9F8 /* Airline.swift in Sources */,
 			);
@@ -422,6 +433,7 @@
 				7765842B22AC380B00E8D9F8 /* AirlineServiceTests.swift in Sources */,
 				77601AE822AC29C0002A6168 /* AirportServiceTests.swift in Sources */,
 				778ECA0122AC1124001DD658 /* Airport_RoutesTests.swift in Sources */,
+				7765844022AC66E800E8D9F8 /* String+CSVQuotesTests.swift in Sources */,
 				77601ADE22AC2184002A6168 /* CSVReaderTests.swift in Sources */,
 				7765843A22AC4AC200E8D9F8 /* RouteManagerTests.swift in Sources */,
 			);

@@ -28,6 +28,6 @@ struct CSVReader: CSVReaderProtocol {
     private func parseCSVString(_ str: String) -> [[String]] {
         var rows = str.replacingOccurrences(of: "\r", with: "").components(separatedBy: "\n")
         rows.removeFirst() // drop the header row
-        return rows.map{ $0.components(separatedBy: ",").map{ return $0 } }
+        return rows.map{ $0.components(separatedBy: ",", escapingQuotes: "\"").map{ return $0 } }
     }
 }

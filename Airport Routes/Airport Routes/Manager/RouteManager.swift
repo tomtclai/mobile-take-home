@@ -2,8 +2,16 @@
 //  Class to figure out shortest routes
 
 import Foundation
-
-class RouteManager {
+enum RouteManagerError: Error {
+    case noRoutes
+    case noSuchAirport(String)
+    case unwrappingError
+}
+protocol RouteManagerProtocol {
+    typealias Handler = (Result<[Route], RouteManagerError>) -> Void
+    func shortestPathBetween(originCode: String, destinationCode destCode: String, completion: Handler)
+}
+class RouteManager: RouteManagerProtocol {
     let routes: Routes
     let airports: Airports
     
@@ -25,9 +33,13 @@ class RouteManager {
         }
     }
     
-    func shortestPathBetween(originCode: String, destinationCode destCode: String) -> [Route] {
-        guard let origin = airports.byAirportCode[originCode],
-            let destination = airports.byAirportCode[destCode] else { return [] }
+    func shortestPathBetween(originCode: String, destinationCode destCode: String, completion: Handler){
+        guard let origin = airports.byAirportCode[originCode] else { completion(.failure(.noSuchAirport(originCode)))
+            return
+        }
+        guard let destination = airports.byAirportCode[destCode] else { completion(.failure(.noSuchAirport(destCode)))
+            return
+        }
         let dikstraTable: [String: DikstraColumn] = airports.allAirports.reduce([String: DikstraColumn]()) { dict, airport in
             var dictionary = dict
             dictionary[airport.iata3] = DikstraColumn(vertex: airport)
@@ -37,7 +49,10 @@ class RouteManager {
         var airportToVisit = [origin.iata3]
         while !airportToVisit.isEmpty {
             let source = airportToVisit.removeFirst()
-            guard nil != dikstraTable[source] else { return [] }
+            guard nil != dikstraTable[source] else {
+                completion(.failure(.unwrappingError))
+                return
+            }
             dikstraTable[source]!.distance = 0
             
             guard let reachableFromThisAirport = routes.byOrigin[source] else {
@@ -64,6 +79,10 @@ class RouteManager {
             currIndex = path.origin
         }
         
-        return entireRoute
+        guard !entireRoute.isEmpty else {
+            completion(.failure(.noRoutes))
+            return
+        }
+        completion(.success(entireRoute))
     }
 }
