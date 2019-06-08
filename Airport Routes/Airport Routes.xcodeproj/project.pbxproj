@@ -21,6 +21,10 @@
 		7765842722AC368800E8D9F8 /* AirlineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765842622AC368800E8D9F8 /* AirlineService.swift */; };
 		7765842922AC376000E8D9F8 /* Airlines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765842822AC376000E8D9F8 /* Airlines.swift */; };
 		7765842B22AC380B00E8D9F8 /* AirlineServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765842A22AC380B00E8D9F8 /* AirlineServiceTests.swift */; };
+		7765842E22AC391C00E8D9F8 /* RouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765842D22AC391C00E8D9F8 /* RouteService.swift */; };
+		7765843022AC393D00E8D9F8 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765842F22AC393D00E8D9F8 /* Route.swift */; };
+		7765843322AC39B500E8D9F8 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843222AC39B500E8D9F8 /* Routes.swift */; };
+		7765843522AC3C8600E8D9F8 /* RouteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843422AC3C8600E8D9F8 /* RouteServiceTests.swift */; };
 		778EC9EC22AC1120001DD658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EC9EB22AC1120001DD658 /* AppDelegate.swift */; };
 		778EC9EE22AC1120001DD658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EC9ED22AC1120001DD658 /* ViewController.swift */; };
 		778EC9F122AC1120001DD658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 778EC9EF22AC1120001DD658 /* Main.storyboard */; };
@@ -61,6 +65,10 @@
 		7765842622AC368800E8D9F8 /* AirlineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineService.swift; sourceTree = "<group>"; };
 		7765842822AC376000E8D9F8 /* Airlines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airlines.swift; sourceTree = "<group>"; };
 		7765842A22AC380B00E8D9F8 /* AirlineServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineServiceTests.swift; sourceTree = "<group>"; };
+		7765842D22AC391C00E8D9F8 /* RouteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteService.swift; sourceTree = "<group>"; };
+		7765842F22AC393D00E8D9F8 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		7765843222AC39B500E8D9F8 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		7765843422AC3C8600E8D9F8 /* RouteServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteServiceTests.swift; sourceTree = "<group>"; };
 		778EC9E822AC1120001DD658 /* Airport Routes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airport Routes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EC9EB22AC1120001DD658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		778EC9ED22AC1120001DD658 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +114,7 @@
 			children = (
 				7765842322AC363D00E8D9F8 /* Airlines */,
 				7765842222AC363400E8D9F8 /* Airports */,
+				7765843122AC395100E8D9F8 /* Routes */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -113,6 +122,7 @@
 		77601AD922AC1FBD002A6168 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				7765842C22AC390200E8D9F8 /* Route */,
 				7765842122AC361300E8D9F8 /* Airline */,
 				7765842022AC360900E8D9F8 /* Airport */,
 			);
@@ -163,6 +173,24 @@
 				7765842822AC376000E8D9F8 /* Airlines.swift */,
 			);
 			path = Airlines;
+			sourceTree = "<group>";
+		};
+		7765842C22AC390200E8D9F8 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				7765842D22AC391C00E8D9F8 /* RouteService.swift */,
+				7765843422AC3C8600E8D9F8 /* RouteServiceTests.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		7765843122AC395100E8D9F8 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				7765842F22AC393D00E8D9F8 /* Route.swift */,
+				7765843222AC39B500E8D9F8 /* Routes.swift */,
+			);
+			path = Routes;
 			sourceTree = "<group>";
 		};
 		778EC9DF22AC1120001DD658 = {
@@ -355,12 +383,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				77601AD822AC1E7A002A6168 /* Airport.swift in Sources */,
+				7765843322AC39B500E8D9F8 /* Routes.swift in Sources */,
 				77601ADB22AC1FE1002A6168 /* CSVReader.swift in Sources */,
 				77601AE422AC2700002A6168 /* AirportService.swift in Sources */,
 				778EC9EE22AC1120001DD658 /* ViewController.swift in Sources */,
 				7765842722AC368800E8D9F8 /* AirlineService.swift in Sources */,
 				778EC9EC22AC1120001DD658 /* AppDelegate.swift in Sources */,
 				7765842922AC376000E8D9F8 /* Airlines.swift in Sources */,
+				7765842E22AC391C00E8D9F8 /* RouteService.swift in Sources */,
+				7765843022AC393D00E8D9F8 /* Route.swift in Sources */,
 				77601AE622AC2726002A6168 /* Airports.swift in Sources */,
 				7765842522AC365400E8D9F8 /* Airline.swift in Sources */,
 			);
@@ -371,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77601AE222AC2544002A6168 /* TestData.swift in Sources */,
+				7765843522AC3C8600E8D9F8 /* RouteServiceTests.swift in Sources */,
 				7765841F22AC35D400E8D9F8 /* FakeCSVReader.swift in Sources */,
 				7765842B22AC380B00E8D9F8 /* AirlineServiceTests.swift in Sources */,
 				77601AE822AC29C0002A6168 /* AirportServiceTests.swift in Sources */,
