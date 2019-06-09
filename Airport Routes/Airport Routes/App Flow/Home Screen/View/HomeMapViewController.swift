@@ -59,8 +59,8 @@ class HomeMapViewController: UIViewController {
     
     // IBActions
     @IBAction func searchTapped() {
-        viewModel.searchForRoutes(origin: originField.text, destination: destinationField.text, successfulClosure: { [weak self] overlays, annotations, airportCodes in
-            self?.addOverlaysToMap(overlays: overlays)
+        viewModel.searchForRoutes(origin: originField.text, destination: destinationField.text, successfulClosure: { [weak self] overlay, annotations, airportCodes in
+            self?.addOverlayToMap(overlay: overlay)
             self?.addAnnotationsToMap(annotations: annotations)
             self?.title = airportCodes.joined(separator: " » ")
         })
@@ -70,13 +70,14 @@ class HomeMapViewController: UIViewController {
         swap(&originField.text, &destinationField.text)
     }
     
-    private var lastOverlay: [MKOverlay]?
-    private func addOverlaysToMap(overlays: [MKOverlay]) {
+    private var lastOverlay: MKOverlay?
+    private func addOverlayToMap(overlay: MKOverlay) {
         if let lastOverlay = lastOverlay {
-            mapView.removeOverlays(lastOverlay)
+            mapView.removeOverlay(lastOverlay)
         }
-        mapView.addOverlays(overlays, level: .aboveRoads)
-        lastOverlay = overlays
+        mapView.addOverlay(overlay, level: .aboveRoads)
+        mapView.addOverlay(overlay, level: .aboveLabels)
+        lastOverlay = overlay
     }
     
     private var lastAnnotations: [MKAnnotation]?
@@ -90,7 +91,7 @@ class HomeMapViewController: UIViewController {
     }
     
     private func refreshUI() {
-        if let lastOverlay = lastOverlay { mapView.removeOverlays(lastOverlay) }
+        if let lastOverlay = lastOverlay { mapView.removeOverlay(lastOverlay) }
         if let lastAnnotations = lastAnnotations {
             mapView.removeAnnotations(lastAnnotations) }
         title = UserStrings.Screens.flightRoutes

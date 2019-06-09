@@ -15,6 +15,8 @@ Open `Airport Routes/Airport Routes.xcodeproj`
 ## Considerations
 Some airports codes are in the routes.csv but not in airport.csv.. I was trying to fix it by adding blank airports at run time, but I don't even know what the UI would look like in that case, so I ignored those routes for now. If it were real life, i'd be talking to the team. and maybe make ticket to fix the backend or wherever the data in the CSV is coming from.
 
+I was only able to get a standard map on simulator, but running on a real device, the 3D map is enabled.
+
 I put in a [coordinator](http://khanlou.com/2015/01/the-coordinator/) so VCs don't know about other VCs. We only have one VC now so this is mostly for demo purpose.
 
 [Tests are co-located](https://kickstarter.engineering/why-you-should-co-locate-your-xcode-tests-c69f79211411), this is a style preference -- I can be convinced otherwise. 

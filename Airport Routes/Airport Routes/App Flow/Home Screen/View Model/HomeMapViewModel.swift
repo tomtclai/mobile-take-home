@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 protocol HomeMapViewModelProtocol {
-    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation], [String]) -> Void)
+    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping (MKOverlay, [MKAnnotation], [String]) -> Void)
     func viewDidLoad()
     
     var resignFirstResponder: EmptyCallBack? { get set }
@@ -48,7 +48,7 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
         self.routeManagerFactory = routeManagerFactory
     }
     
-    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation], [String]) -> Void) {
+    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping (MKOverlay, [MKAnnotation], [String]) -> Void) {
         guard let routeManager = routeManager else { return }
         resignFirstResponder?()
         guard let origin = origin, !origin.isEmpty else {
@@ -69,7 +69,7 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
         )
     }
     
-    private func handleShortestPathResult(origin: String, dest: String, result: Result<[Route], RouteManagerError>, successfulClosure: @escaping ([MKOverlay], [MKAnnotation], [String]) -> Void) {
+    private func handleShortestPathResult(origin: String, dest: String, result: Result<[Route], RouteManagerError>, successfulClosure: @escaping (MKOverlay, [MKAnnotation], [String]) -> Void) {
         switch result {
         case .failure(let reason):
             switch reason {
@@ -84,9 +84,9 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
             let airports = convertRouteToAirports(route: paths)
             let airportCodes = airports.map {$0.iata3}
             print(airportCodes.joined(separator: " » ") )
-            let overlays = convertAirportsToMapLines(airports: airports)
+            let overlay = convertAirportsToMapLines(airports: airports)
             let annotations = convertAirportsToAnnotations(airports: airports)
-            successfulClosure(overlays, annotations, airports.map {$0.iata3})
+            successfulClosure(overlay, annotations, airports.map {$0.iata3})
         }
         stopSpinner?()
     }
@@ -106,12 +106,9 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
         return airportList
     }
     
-    private func convertAirportsToMapLines(airports: [Airport]) -> [MKOverlay] {
+    private func convertAirportsToMapLines(airports: [Airport]) -> MKOverlay {
         let points = airports.compactMap { $0.location?.coordinate }
-        var geodesic = [MKGeodesicPolyline]()
-        for i in 1..<points.count {
-            geodesic.append(MKGeodesicPolyline(coordinates: [points[i-1], points[i]], count: 2))
-        }
+        let geodesic = MKGeodesicPolyline(coordinates: points, count: points.count)
         return geodesic
     }
     
@@ -167,12 +164,15 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
     }
     
     func overlayRenderer(overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = .red
-        renderer.lineWidth = 2
-        renderer.lineJoin = .round
-        renderer.lineCap = .round
-        return renderer
+        if overlay is MKGeodesicPolyline{
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = .red
+            renderer.lineWidth = 2
+            renderer.lineJoin = .round
+            renderer.lineCap = .round
+            return renderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
     }
     
 }
