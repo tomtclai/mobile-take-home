@@ -17,10 +17,10 @@ Some airports codes are in the routes.csv but not in airport.csv.. I was trying 
 
 I put in a [coordinator](http://khanlou.com/2015/01/the-coordinator/) so VCs don't know about other VCs. We only have one VC now so this is mostly for demo purpose.
 
-[Tests are collocated](https://kickstarter.engineering/why-you-should-co-locate-your-xcode-tests-c69f79211411), this is a style preference -- I can be convinced otherwise. 
+[Tests are co-located](https://kickstarter.engineering/why-you-should-co-locate-your-xcode-tests-c69f79211411), this is a style preference -- I can be convinced otherwise. 
 
 ## Future Improvments
-Test the dijkstra algorithem more thorouhly
+Test the dijkstra algorithm more thoroughly
 
 Add unit tests for the viewmodel and viewcontroller, espc the error paths; snapshot tests for views
 
