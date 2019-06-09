@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 protocol HomeMapViewModelProtocol {
-    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay]) -> Void)
+    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation]) -> Void)
     func viewDidLoad()
     
     var resignFirstResponder: EmptyCallBack? { get set }
@@ -46,7 +46,7 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
         self.airlineService = airlineService
     }
     
-    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay]) -> Void) {
+    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation]) -> Void) {
         guard let routeManager = routeManager else { return }
         resignFirstResponder?()
         guard let origin = origin, !origin.isEmpty else {
@@ -67,7 +67,7 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
         )
     }
     
-    private func handleShortestPathResult(origin: String, dest: String, result: Result<[Route], RouteManagerError>, successfulClosure: @escaping ([MKOverlay]) -> Void) {
+    private func handleShortestPathResult(origin: String, dest: String, result: Result<[Route], RouteManagerError>, successfulClosure: @escaping ([MKOverlay], [MKAnnotation]) -> Void) {
         switch result {
         case .failure(let reason):
             switch reason {
@@ -82,7 +82,8 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
             let airports = convertRouteToAirports(route: paths)
             print(airports.map {$0.iata3}.joined(separator: " » ") )
             let overlays = convertAirportsToMapLines(airports: airports)
-            successfulClosure(overlays)
+            let annotations = convertAirportsToAnnotations(airports: airports)
+            successfulClosure(overlays, annotations)
         }
         stopSpinner?()
     }
@@ -109,6 +110,17 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
             geodesic.append(MKGeodesicPolyline(coordinates: [points[i-1], points[i]], count: 2))
         }
         return geodesic
+    }
+    
+    private func convertAirportsToAnnotations(airports: [Airport]) -> [MKAnnotation] {
+        return airports.enumerated().compactMap{ index, airport in
+            guard let coordinate = airport.location?.coordinate else { return nil }
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = "\(index+1). \(airport.name) (\(airport.iata3))"
+            annotation.subtitle = airport.country
+            return annotation
+        }
     }
     
     func viewDidLoad() {

@@ -53,12 +53,13 @@ class HomeMapViewController: UIViewController {
     
     // IBActions
     @IBAction func searchTapped() {
-        viewModel.searchForRoutes(origin: originField.text, destination: destinationField.text, successfulClosure: { [weak self] overlays in
+        viewModel.searchForRoutes(origin: originField.text, destination: destinationField.text, successfulClosure: { [weak self] overlays, annotations in
             self?.addOverlaysToMap(overlays: overlays)
+            self?.addAnnotationsToMap(annotations: annotations)
         })
     }
     
-    var lastOverlay: [MKOverlay]?
+    private var lastOverlay: [MKOverlay]?
     private func addOverlaysToMap(overlays: [MKOverlay]) {
         if let lastOverlay = lastOverlay {
             mapView.removeOverlays(lastOverlay)
@@ -66,14 +67,22 @@ class HomeMapViewController: UIViewController {
         mapView.addOverlays(overlays, level: .aboveRoads)
         UIView.animate(withDuration: 0.2) { [weak self] in
             guard let sSelf = self else { return }
-            
+
             let lineRect = overlays.reduce(overlays[0].boundingMapRect, { $0.union($1.boundingMapRect) })
             sSelf.mapView.setVisibleMapRect(lineRect, animated: true)
         }
         lastOverlay = overlays
     }
     
-
+    private var lastAnnotations: [MKAnnotation]?
+    private func addAnnotationsToMap(annotations: [MKAnnotation]) {
+        if let lastAnnotations = lastAnnotations {
+            mapView.removeAnnotations(lastAnnotations)
+        }
+        mapView.addAnnotations(annotations)
+        lastAnnotations = annotations
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         mapView.delegate = nil
     }

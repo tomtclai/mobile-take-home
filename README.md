@@ -20,7 +20,10 @@ You need instructions on how to run the solution.
 Some airports codes are in the routes.csv but not in airport.csv.. I was trying to fix it by adding blank airports, but I don't even know what the UI would look like in that case. So I stopped doing that. If it were real life, i'd be talking to the team. and maybe make ticket to fix the backend or wherever the data in the CSV is coming from.
 
 ## Future Improvments
+
 Right now, when search is tapped, the map is zoomed so that the route fits on the display. But there is little to no padding - the line touches the edge of the screen.
+
+I would display the entire route (stops in the middle) on the map
 
 ## Useful Routes for testing
 - LAS PVG (1 stop)
