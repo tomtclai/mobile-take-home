@@ -2,7 +2,7 @@
 
 What you are most interested in is how the problem is worked through, also you will look at how unit tests are written and how the solution is structured / designed.
 
-The 4 user stories are found in [instruction.md](instruction.md)
+The 4 user stories are found in [instructions.md](instructions.md)
 
 No third party libraries may be used.
 
