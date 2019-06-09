@@ -32,7 +32,7 @@ Test the dijkstra algorithem more thorouhly
 
 Add unit tests for the viewmodel and viewcontroller, espc the error paths; snapshot tests for views
 
-search controller to show suggestions as I type
+Search controller to show suggestions as I type
 
 a menu on the bottom with all the stops on the route, when I tap on it i want the map to zoom to that airport
 
