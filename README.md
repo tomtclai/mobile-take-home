@@ -6,7 +6,11 @@ The 4 user stories are found in [instruction.md](instruction.md)
 
 No third party libraries may be used.
 
-You need instructions on how to run the solution.
+# Instructions To Run the solution
+
+Requires Xcode 10.2.1
+
+Open `Airport Routes/Airport Routes.xcodeproj`
 
 ## Focus
 
@@ -25,7 +29,7 @@ I put in a [coordinator](http://khanlou.com/2015/01/the-coordinator/) to show ar
 
 ## Future Improvments
 
-Add unit tests for the viewmodel and viewcontroller; snapshot tests for views
+Add unit tests for the viewmodel and viewcontroller, espc the error paths; snapshot tests for views
 
 Could potentially add a call out on the map pin - https://stackoverflow.com/a/33978778 
 

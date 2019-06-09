@@ -27,7 +27,8 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
     let routeService: RouteServiceProtocol
     let airlineService: AirlineServiceProtocol
     
-    var routeManager: RouteManager?
+    var routeManagerFactory: RouteManagerFactoryProtocol
+    var routeManager: RouteManagerProtocol?
     var airports: Airports?
     var airlines: Airlines?
     var routes: Routes?
@@ -39,11 +40,12 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
     var startSpinner: EmptyCallBack?
     var stopSpinner: EmptyCallBack?
     
-    init(airportService: AirportServiceProtocol, routeService: RouteServiceProtocol, airlineService: AirlineServiceProtocol) {
+    init(airportService: AirportServiceProtocol, routeService: RouteServiceProtocol, airlineService: AirlineServiceProtocol, routeManagerFactory: RouteManagerFactoryProtocol) {
         
         self.airportService = airportService
         self.routeService = routeService
         self.airlineService = airlineService
+        self.routeManagerFactory = routeManagerFactory
     }
     
     func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation]) -> Void) {
@@ -160,7 +162,7 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
         }
         group.wait()
         guard let routes = routes, let airports = airports else { return }
-        routeManager = RouteManager(routes: routes, airports: airports)
+        routeManager = routeManagerFactory.makeRouteManager(routes: routes, airports: airports)
     }
     
     func overlayRenderer(overlay: MKOverlay) -> MKOverlayRenderer {

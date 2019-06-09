@@ -28,7 +28,8 @@ class AppCoordinator {
         let airportService = AirportService(csvReader: csvReader)
         let routeService = RouteService(csvReader: csvReader)
         let airlineService = AirlineService(csvReader: csvReader)
-        let viewModel = HomeMapViewModel(airportService: airportService, routeService: routeService, airlineService: airlineService)
+        let routeManagerFactory = RouteManagerFactory()
+        let viewModel = HomeMapViewModel(airportService: airportService, routeService: routeService, airlineService: airlineService, routeManagerFactory: routeManagerFactory)
         viewController.viewModel = viewModel
         navigationController.setViewControllers([viewController], animated: false)
         

@@ -69,13 +69,13 @@ class RouteManagerTests: XCTestCase {
     }
 }
 
-private extension Airport {
+extension Airport {
     init(iata3: String) {
         self.init(name: "", city: "", country: "", iata3: iata3, latitude: "0.0", longitude: "0.0")!
     }
 }
 
-private extension Route {
+extension Route {
     init(origin: String, destination: String) {
         self.init(airlineID: "", origin: origin, destination: destination)
     }

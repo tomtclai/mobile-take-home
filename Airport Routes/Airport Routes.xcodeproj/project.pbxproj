@@ -41,6 +41,8 @@
 		77D568DE22AD148B008B3A64 /* HomeMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568DD22AD148B008B3A64 /* HomeMapViewModel.swift */; };
 		77D568E022AD14C7008B3A64 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568DF22AD14C7008B3A64 /* AppCoordinator.swift */; };
 		77D568E322AD171F008B3A64 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568E222AD171F008B3A64 /* TypeAlias.swift */; };
+		77D568E522AD35B2008B3A64 /* HomeMapViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568E422AD35B2008B3A64 /* HomeMapViewModelTests.swift */; };
+		77D568E722AD3729008B3A64 /* RouteManagerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568E622AD3729008B3A64 /* RouteManagerFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,8 @@
 		77D568DD22AD148B008B3A64 /* HomeMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewModel.swift; sourceTree = "<group>"; };
 		77D568DF22AD14C7008B3A64 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		77D568E222AD171F008B3A64 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
+		77D568E422AD35B2008B3A64 /* HomeMapViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewModelTests.swift; sourceTree = "<group>"; };
+		77D568E622AD3729008B3A64 /* RouteManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteManagerFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +222,7 @@
 		7765843622AC3DD200E8D9F8 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				77D568E622AD3729008B3A64 /* RouteManagerFactory.swift */,
 				7765843722AC3DE400E8D9F8 /* RouteManager.swift */,
 				7765843922AC4AC100E8D9F8 /* RouteManagerTests.swift */,
 			);
@@ -312,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				77D568DD22AD148B008B3A64 /* HomeMapViewModel.swift */,
+				77D568E422AD35B2008B3A64 /* HomeMapViewModelTests.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77601AD822AC1E7A002A6168 /* Airport.swift in Sources */,
+				77D568E722AD3729008B3A64 /* RouteManagerFactory.swift in Sources */,
 				7765843322AC39B500E8D9F8 /* Routes.swift in Sources */,
 				77D568E022AD14C7008B3A64 /* AppCoordinator.swift in Sources */,
 				77601ADB22AC1FE1002A6168 /* CSVReader.swift in Sources */,
@@ -494,6 +501,7 @@
 				7765842B22AC380B00E8D9F8 /* AirlineServiceTests.swift in Sources */,
 				77601AE822AC29C0002A6168 /* AirportServiceTests.swift in Sources */,
 				778ECA0122AC1124001DD658 /* Airport_RoutesTests.swift in Sources */,
+				77D568E522AD35B2008B3A64 /* HomeMapViewModelTests.swift in Sources */,
 				7765844022AC66E800E8D9F8 /* String+CSVQuotesTests.swift in Sources */,
 				77601ADE22AC2184002A6168 /* CSVReaderTests.swift in Sources */,
 				7765843A22AC4AC200E8D9F8 /* RouteManagerTests.swift in Sources */,
