@@ -30,8 +30,6 @@ a menu on the bottom with all the stops on the route, when I tap on it i want th
 
 Could potentially add a call out on the map pin - https://stackoverflow.com/a/33978778 
 
-
-
 ## Useful Routes for testing
 - LAS PVG (1 stop)
 - LAS HGH (2 stops)
@@ -39,3 +37,8 @@ Could potentially add a call out on the map pin - https://stackoverflow.com/a/33
 - YYY SZX (3 stops)
 - YYY ZUH (3 stops)
 - AKU YYY (4 stops)
+
+## Screenshots
+
+| ![](images/IMG_0652.PNG) |![](images/IMG_0647.PNG) | ![](images/IMG_0655.PNG) 
+|---|---|---|
