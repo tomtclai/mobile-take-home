@@ -37,6 +37,7 @@
 		778EC9F622AC1124001DD658 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 778EC9F422AC1124001DD658 /* LaunchScreen.storyboard */; };
 		778ECA0122AC1124001DD658 /* Airport_RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778ECA0022AC1124001DD658 /* Airport_RoutesTests.swift */; };
 		778ECA0C22AC1124001DD658 /* Airport_RoutesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778ECA0B22AC1124001DD658 /* Airport_RoutesUITests.swift */; };
+		77D568D722AC96A3008B3A64 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D568D622AC96A3008B3A64 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		778ECA0722AC1124001DD658 /* Airport RoutesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Airport RoutesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778ECA0B22AC1124001DD658 /* Airport_RoutesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport_RoutesUITests.swift; sourceTree = "<group>"; };
 		778ECA0D22AC1124001DD658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77D568D622AC96A3008B3A64 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77D568D722AC96A3008B3A64 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +225,7 @@
 				778EC9FF22AC1124001DD658 /* Airport RoutesTests */,
 				778ECA0A22AC1124001DD658 /* Airport RoutesUITests */,
 				778EC9E922AC1120001DD658 /* Products */,
+				77D568D522AC96A3008B3A64 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -270,6 +274,14 @@
 				778ECA0D22AC1124001DD658 /* Info.plist */,
 			);
 			path = "Airport RoutesUITests";
+			sourceTree = "<group>";
+		};
+		77D568D522AC96A3008B3A64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77D568D622AC96A3008B3A64 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +352,11 @@
 				TargetAttributes = {
 					778EC9E722AC1120001DD658 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					778EC9FB22AC1124001DD658 = {
 						CreatedOnToolsVersion = 10.2.1;

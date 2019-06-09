@@ -19,5 +19,5 @@ You need instructions on how to run the solution.
 Some airports codes are in the routes.csv but not in airport.csv.. I was trying to fix it but I don't even know what the UI would look like in that case. So I stopped doing that. If it were real life, i'd be talking to the team. and maybe make ticket to fix the backend or wherever the data in the CSV is coming from.
 
 ## Useful Routes for testing
-- LAS PVG
-- PDX PVG
+- LAS PVG (1 stop)
+- PDX PVG (1 stop)
