@@ -1,4 +1,7 @@
 enum UserStrings {
+    enum Screens {
+        static let flightRoutes = "Flight Routes"
+    }
     enum Alert {
         static let somethingWentWrong = "Something went wrong..."
         static let tryAgain = "Please try again"

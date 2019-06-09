@@ -31,13 +31,16 @@
 		7765843E22AC66C300E8D9F8 /* String+CSVQuotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843D22AC66C300E8D9F8 /* String+CSVQuotes.swift */; };
 		7765844022AC66E800E8D9F8 /* String+CSVQuotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765843F22AC66E800E8D9F8 /* String+CSVQuotesTests.swift */; };
 		778EC9EC22AC1120001DD658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EC9EB22AC1120001DD658 /* AppDelegate.swift */; };
-		778EC9EE22AC1120001DD658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EC9ED22AC1120001DD658 /* ViewController.swift */; };
-		778EC9F122AC1120001DD658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 778EC9EF22AC1120001DD658 /* Main.storyboard */; };
+		778EC9F122AC1120001DD658 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 778EC9EF22AC1120001DD658 /* Home.storyboard */; };
 		778EC9F322AC1124001DD658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778EC9F222AC1124001DD658 /* Assets.xcassets */; };
 		778EC9F622AC1124001DD658 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 778EC9F422AC1124001DD658 /* LaunchScreen.storyboard */; };
 		778ECA0122AC1124001DD658 /* Airport_RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778ECA0022AC1124001DD658 /* Airport_RoutesTests.swift */; };
 		778ECA0C22AC1124001DD658 /* Airport_RoutesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778ECA0B22AC1124001DD658 /* Airport_RoutesUITests.swift */; };
 		77D568D722AC96A3008B3A64 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D568D622AC96A3008B3A64 /* MapKit.framework */; };
+		77D568DC22AD1411008B3A64 /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568DB22AD1411008B3A64 /* HomeMapViewController.swift */; };
+		77D568DE22AD148B008B3A64 /* HomeMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568DD22AD148B008B3A64 /* HomeMapViewModel.swift */; };
+		77D568E022AD14C7008B3A64 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568DF22AD14C7008B3A64 /* AppCoordinator.swift */; };
+		77D568E322AD171F008B3A64 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D568E222AD171F008B3A64 /* TypeAlias.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,8 +85,7 @@
 		7765843F22AC66E800E8D9F8 /* String+CSVQuotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CSVQuotesTests.swift"; sourceTree = "<group>"; };
 		778EC9E822AC1120001DD658 /* Airport Routes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Airport Routes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778EC9EB22AC1120001DD658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		778EC9ED22AC1120001DD658 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		778EC9F022AC1120001DD658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		778EC9F022AC1120001DD658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		778EC9F222AC1124001DD658 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		778EC9F522AC1124001DD658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		778EC9F722AC1124001DD658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +96,10 @@
 		778ECA0B22AC1124001DD658 /* Airport_RoutesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport_RoutesUITests.swift; sourceTree = "<group>"; };
 		778ECA0D22AC1124001DD658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77D568D622AC96A3008B3A64 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		77D568DB22AD1411008B3A64 /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
+		77D568DD22AD148B008B3A64 /* HomeMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewModel.swift; sourceTree = "<group>"; };
+		77D568DF22AD14C7008B3A64 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		77D568E222AD171F008B3A64 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				77601ADA22AC1FE1002A6168 /* CSVReader.swift */,
+				77D568E222AD171F008B3A64 /* TypeAlias.swift */,
 				77601ADD22AC2184002A6168 /* CSVReaderTests.swift */,
 				7765843D22AC66C300E8D9F8 /* String+CSVQuotes.swift */,
 				7765843F22AC66E800E8D9F8 /* String+CSVQuotesTests.swift */,
@@ -242,7 +249,7 @@
 		778EC9EA22AC1120001DD658 /* Airport Routes */ = {
 			isa = PBXGroup;
 			children = (
-				77D568D922AD13C8008B3A64 /* Home Screen */,
+				77D568E122AD14CE008B3A64 /* App Flow */,
 				7765843622AC3DD200E8D9F8 /* Manager */,
 				77601ADC22AC1FF8002A6168 /* Utilities */,
 				77601AD922AC1FBD002A6168 /* Service */,
@@ -286,8 +293,8 @@
 		77D568D822AD13B6008B3A64 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				778EC9ED22AC1120001DD658 /* ViewController.swift */,
-				778EC9EF22AC1120001DD658 /* Main.storyboard */,
+				77D568DB22AD1411008B3A64 /* HomeMapViewController.swift */,
+				778EC9EF22AC1120001DD658 /* Home.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -304,8 +311,18 @@
 		77D568DA22AD13D2008B3A64 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				77D568DD22AD148B008B3A64 /* HomeMapViewModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		77D568E122AD14CE008B3A64 /* App Flow */ = {
+			isa = PBXGroup;
+			children = (
+				77D568DF22AD14C7008B3A64 /* AppCoordinator.swift */,
+				77D568D922AD13C8008B3A64 /* Home Screen */,
+			);
+			path = "App Flow";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +437,7 @@
 				778EC9F622AC1124001DD658 /* LaunchScreen.storyboard in Resources */,
 				778EC9F322AC1124001DD658 /* Assets.xcassets in Resources */,
 				77601AD522AC11F4002A6168 /* data in Resources */,
-				778EC9F122AC1120001DD658 /* Main.storyboard in Resources */,
+				778EC9F122AC1120001DD658 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,16 +465,19 @@
 			files = (
 				77601AD822AC1E7A002A6168 /* Airport.swift in Sources */,
 				7765843322AC39B500E8D9F8 /* Routes.swift in Sources */,
+				77D568E022AD14C7008B3A64 /* AppCoordinator.swift in Sources */,
 				77601ADB22AC1FE1002A6168 /* CSVReader.swift in Sources */,
+				77D568DE22AD148B008B3A64 /* HomeMapViewModel.swift in Sources */,
 				77601AE422AC2700002A6168 /* AirportService.swift in Sources */,
-				778EC9EE22AC1120001DD658 /* ViewController.swift in Sources */,
 				7765842722AC368800E8D9F8 /* AirlineService.swift in Sources */,
 				7765843822AC3DE400E8D9F8 /* RouteManager.swift in Sources */,
 				7765843E22AC66C300E8D9F8 /* String+CSVQuotes.swift in Sources */,
 				778EC9EC22AC1120001DD658 /* AppDelegate.swift in Sources */,
 				7765842922AC376000E8D9F8 /* Airlines.swift in Sources */,
 				7765842E22AC391C00E8D9F8 /* RouteService.swift in Sources */,
+				77D568E322AD171F008B3A64 /* TypeAlias.swift in Sources */,
 				7765843022AC393D00E8D9F8 /* Route.swift in Sources */,
+				77D568DC22AD1411008B3A64 /* HomeMapViewController.swift in Sources */,
 				7765843C22AC5AB400E8D9F8 /* UserStrings.swift in Sources */,
 				77601AE622AC2726002A6168 /* Airports.swift in Sources */,
 				7765842522AC365400E8D9F8 /* Airline.swift in Sources */,
@@ -504,12 +524,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		778EC9EF22AC1120001DD658 /* Main.storyboard */ = {
+		778EC9EF22AC1120001DD658 /* Home.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				778EC9F022AC1120001DD658 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Home.storyboard;
 			sourceTree = "<group>";
 		};
 		778EC9F422AC1124001DD658 /* LaunchScreen.storyboard */ = {
