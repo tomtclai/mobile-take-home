@@ -63,13 +63,34 @@ class ViewController: UIViewController {
             case .success(let paths):
                 let airports = sSelf.convertRouteToAirports(route: paths)
                 print(airports)
+                sSelf.drawLinesOnMap(airports: airports)
             }
             sSelf.spinner.stopAnimating()
         })
     }
-    
-    private func drawLinesOnMap(route: [Route]){
-        
+    var lastOverlay: MKOverlay?
+    private func drawLinesOnMap(airports: [Airport]){
+        let points = airports.compactMap { $0.location?.coordinate }
+        let geodesic = MKPolyline(coordinates: points, count: points.count)
+        if let lastOverlay = lastOverlay {
+            mapView.removeOverlay(lastOverlay)
+        }
+        mapView.addOverlay(geodesic)
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            guard let sSelf = self else { return }
+            let latA = points[0].latitude
+            let latB = points[points.count-1].latitude
+            let longA = points[0].longitude
+            let longB = points[points.count-1].longitude
+            let latDelta = latA - latB
+            let longDelta = longA - longB
+            let center = CLLocationCoordinate2D(latitude: (latA + latB)/2,
+                                                longitude: (longA + longB)/2)
+            let span = MKCoordinateSpan(latitudeDelta: abs(latDelta), longitudeDelta: abs(longDelta))
+            let region = MKCoordinateRegion(center: points[points.count/2], span: span)
+            sSelf.mapView.setRegion(region, animated: true)
+        }
+        lastOverlay = geodesic
     }
     
     private func convertRouteToAirports(route: [Route]) -> [Airport] {
