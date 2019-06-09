@@ -47,6 +47,7 @@ class HomeMapViewController: UIViewController {
         }
         viewModel.presentAlert = { [weak self] title, message in
             self?.presentAlert(title: title, message: message)
+            self?.refreshUI()
         }
         viewModel.startSpinner = { [weak self] in
             self?.spinner.startAnimating()
@@ -58,9 +59,10 @@ class HomeMapViewController: UIViewController {
     
     // IBActions
     @IBAction func searchTapped() {
-        viewModel.searchForRoutes(origin: originField.text, destination: destinationField.text, successfulClosure: { [weak self] overlays, annotations in
+        viewModel.searchForRoutes(origin: originField.text, destination: destinationField.text, successfulClosure: { [weak self] overlays, annotations, airportCodes in
             self?.addOverlaysToMap(overlays: overlays)
             self?.addAnnotationsToMap(annotations: annotations)
+            self?.title = airportCodes.joined(separator: " » ")
         })
     }
     
@@ -85,6 +87,15 @@ class HomeMapViewController: UIViewController {
         mapView.addAnnotations(annotations)
         mapView.showAnnotations(annotations, animated: true)
         lastAnnotations = annotations
+    }
+    
+    private func refreshUI() {
+        if let lastOverlay = lastOverlay { mapView.removeOverlays(lastOverlay) }
+        if let lastAnnotations = lastAnnotations {
+            mapView.removeAnnotations(lastAnnotations) }
+        title = UserStrings.Screens.flightRoutes
+        lastOverlay = nil
+        lastAnnotations = nil
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 protocol HomeMapViewModelProtocol {
-    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation]) -> Void)
+    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation], [String]) -> Void)
     func viewDidLoad()
     
     var resignFirstResponder: EmptyCallBack? { get set }
@@ -48,7 +48,7 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
         self.routeManagerFactory = routeManagerFactory
     }
     
-    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation]) -> Void) {
+    func searchForRoutes(origin: String?, destination: String?, successfulClosure: @escaping ([MKOverlay], [MKAnnotation], [String]) -> Void) {
         guard let routeManager = routeManager else { return }
         resignFirstResponder?()
         guard let origin = origin, !origin.isEmpty else {
@@ -69,7 +69,7 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
         )
     }
     
-    private func handleShortestPathResult(origin: String, dest: String, result: Result<[Route], RouteManagerError>, successfulClosure: @escaping ([MKOverlay], [MKAnnotation]) -> Void) {
+    private func handleShortestPathResult(origin: String, dest: String, result: Result<[Route], RouteManagerError>, successfulClosure: @escaping ([MKOverlay], [MKAnnotation], [String]) -> Void) {
         switch result {
         case .failure(let reason):
             switch reason {
@@ -82,10 +82,11 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
             }
         case .success(let paths):
             let airports = convertRouteToAirports(route: paths)
-            print(airports.map {$0.iata3}.joined(separator: " » ") )
+            let airportCodes = airports.map {$0.iata3}
+            print(airportCodes.joined(separator: " » ") )
             let overlays = convertAirportsToMapLines(airports: airports)
             let annotations = convertAirportsToAnnotations(airports: airports)
-            successfulClosure(overlays, annotations)
+            successfulClosure(overlays, annotations, airports.map {$0.iata3})
         }
         stopSpinner?()
     }

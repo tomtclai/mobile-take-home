@@ -73,24 +73,29 @@ class RouteManager: RouteManagerProtocol {
         }
         
         var airportToVisit = [origin.iata3]
+        dikstraTable[originCode]!.distance = 0
         while !airportToVisit.isEmpty {
+            
             let source = airportToVisit.removeFirst()
-            guard nil != dikstraTable[source] else {
-                print("FIXME: Route dataset contains airport code \(source) but it is not in the airport dataset")
+            
+            guard let dikstraSource = dikstraTable[source], !dikstraSource.visited else {
                 continue
             }
-            dikstraTable[source]!.distance = 0
+            dikstraTable[source]!.visited = true
             
-            guard let reachableFromThisAirport = routes.byOrigin[source] else {
-//                 print("Nothing is reachable from this airport")
-                break
+            guard let routesFromVertex = routes.byOrigin[source] else {
+                continue
             }
             
-            let destinations = reachableFromThisAirport.map{$0.destination}
+            let routesWithRealAirportsFromVertex = routesFromVertex.filter({ route in
+                return airports.byAirportCode[route.destination] != nil && airports.byAirportCode[route.origin] != nil
+            })
+            
+            let destinations = routesWithRealAirportsFromVertex.map{$0.destination}
             
             airportToVisit.append(contentsOf: destinations)
             
-            for route in reachableFromThisAirport {
+            for route in routesWithRealAirportsFromVertex {
                 guard let dikstraSource = dikstraTable[route.origin] else {
                     print("FIXME: Route dataset contains airport code \(route.origin) but it is not in the airport dataset")
                         continue
