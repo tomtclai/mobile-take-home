@@ -13,7 +13,7 @@ Requires Xcode 10.2.1
 Open `Airport Routes/Airport Routes.xcodeproj`
 
 ## Considerations
-Some airports codes are in the routes.csv but not in airport.csv.. I was trying to fix it by adding blank airports at run time, but I don't even know what the UI would look like in that case, so I ignored those routes for now. If it were real life, i'd be talking to the team. and maybe make ticket to fix the backend or wherever the data in the CSV is coming from.
+Some airports codes are in the routes.csv but not in airport.csv.. I was trying to fix it by adding blank airports at run time, but I don't even know what the UI would look like in that case, and it's sunday, so I ignored those routes for now. If it were real life, i'd be talking to the team. and maybe make ticket to fix the backend or wherever the data in the CSV is coming from.
 
 I was only able to get a standard map on simulator, but running on a real device, the 3D map is enabled.
 
