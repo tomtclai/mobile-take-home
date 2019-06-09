@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         mapView.delegate = self
     }
     
+    // IBActions
     @IBAction func searchTapped() {
         guard let routeManager = routeManager else { return }
         guard let origin = originField.text, !origin.isEmpty else {
@@ -48,27 +49,47 @@ class ViewController: UIViewController {
         
         spinner.startAnimating()
         routeManager.shortestPathBetween(originCode: origin, destinationCode: dest, completion: { [weak self] result in
+            guard let sSelf = self else { return }
             switch result {
             case .failure(let reason):
                 switch reason {
                 case .noRoutes, .dataSourceError:
-                    self?.presentAlert(title: UserStrings.Alert.sorry, message: UserStrings.Alert.weCouldntFindARoute(between: origin, and: dest))
+                    sSelf.presentAlert(title: UserStrings.Alert.sorry, message: UserStrings.Alert.weCouldntFindARoute(between: origin, and: dest))
                 case .noSuchAirport(let airport):
                     self?.presentAlert(title: UserStrings.Alert.weCouldntFindThisAirport(airport), message: UserStrings.Alert.tryAgain)
                 case .unwrappingError:
-                    self?.presentAlert(title: UserStrings.Alert.somethingWentWrong, message: UserStrings.Alert.tryAgain)
+                    sSelf.presentAlert(title: UserStrings.Alert.somethingWentWrong, message: UserStrings.Alert.tryAgain)
                 }
             case .success(let paths):
-                print(paths)
+                let airports = sSelf.convertRouteToAirports(route: paths)
+                print(airports)
             }
-            self?.spinner.stopAnimating()
+            sSelf.spinner.stopAnimating()
         })
+    }
+    
+    private func drawLinesOnMap(route: [Route]){
+        
+    }
+    
+    private func convertRouteToAirports(route: [Route]) -> [Airport] {
+        guard let airports = airports,
+            let firstRoute = route.first,
+            let firstAirport = airports.byAirportCode[firstRoute.origin] else {
+                print("Couldnt find the first airport in route")
+            return []
+        }
+        var airportList = [firstAirport]
+        for i in 0..<route.count {
+            guard let airport = airports.byAirportCode[route[i].destination] else { return [] }
+            airportList.append(airport)
+        }
+        return airportList
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         mapView.delegate = nil
     }
-    // IBActions
     
     
     private func loadData() {
