@@ -23,7 +23,7 @@ class HomeMapViewModelTests: XCTestCase {
 
     func testSearchRoutes() {
         let expectation = XCTestExpectation(description: "SearchingForRoutes should return 5 lines beteen 6 points")
-        homeMapViewModel.searchForRoutes(origin: "SEA", destination: "COT") { (overlays, annotations) in
+        homeMapViewModel.searchForRoutes(origin: "SEA", destination: "COT") { (overlays, annotations, strings) in
             XCTAssertEqual(overlays.count, 5)
             XCTAssertEqual(annotations.count, 6)
             XCTAssertEqual(annotations[0].title, "1.  (SEA)")
@@ -32,6 +32,7 @@ class HomeMapViewModelTests: XCTestCase {
             XCTAssertEqual(annotations[3].title, "4.  (SVG)")
             XCTAssertEqual(annotations[4].title, "5.  (COT)")
             XCTAssertEqual(annotations[5].title, "6.  (PDX)")
+            XCTAssertEqual(strings, ["SEA", "VVX", "COT", "SVG", "COT", "PDX"])
             expectation.fulfill()
         }
     }
