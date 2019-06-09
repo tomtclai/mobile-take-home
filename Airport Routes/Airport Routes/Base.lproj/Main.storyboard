@@ -60,7 +60,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="700" verticalHuggingPriority="760" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="500" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cMx-8A-g10">
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="700" verticalHuggingPriority="760" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="500" mapType="hybridFlyover" translatesAutoresizingMaskIntoConstraints="NO" id="cMx-8A-g10">
                                         <rect key="frame" x="0.0" y="214" width="414" height="604"/>
                                     </mapView>
                                 </subviews>

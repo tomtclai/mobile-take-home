@@ -68,29 +68,50 @@ class ViewController: UIViewController {
             sSelf.spinner.stopAnimating()
         })
     }
-    var lastOverlay: MKOverlay?
+    var lastOverlay: [MKOverlay]?
     private func drawLinesOnMap(airports: [Airport]){
         let points = airports.compactMap { $0.location?.coordinate }
-        let geodesic = MKPolyline(coordinates: points, count: points.count)
-        if let lastOverlay = lastOverlay {
-            mapView.removeOverlay(lastOverlay)
+        
+        var geodesic = [MKGeodesicPolyline]()
+        for i in 1..<points.count {
+            geodesic.append(MKGeodesicPolyline(coordinates: [points[i-1], points[i]], count: 2))
         }
-        mapView.addOverlay(geodesic)
+        
+        if let lastOverlay = lastOverlay {
+            mapView.removeOverlays(lastOverlay)
+        }
+        mapView.addOverlays(geodesic, level: .aboveRoads)
+        let latA = points[0].latitude
+        let latB = points[points.count-1].latitude
+        let longA = points[0].longitude
+        let longB = points[points.count-1].longitude
+        let latDelta = latA - latB
+        let longDelta = longA - longB
         UIView.animate(withDuration: 0.2) { [weak self] in
             guard let sSelf = self else { return }
-            let latA = points[0].latitude
-            let latB = points[points.count-1].latitude
-            let longA = points[0].longitude
-            let longB = points[points.count-1].longitude
-            let latDelta = latA - latB
-            let longDelta = longA - longB
-            let center = CLLocationCoordinate2D(latitude: (latA + latB)/2,
-                                                longitude: (longA + longB)/2)
-            let span = MKCoordinateSpan(latitudeDelta: abs(latDelta), longitudeDelta: abs(longDelta))
-            let region = MKCoordinateRegion(center: points[points.count/2], span: span)
+            let span = MKCoordinateSpan(latitudeDelta: abs(latDelta)+20, longitudeDelta: abs(longDelta)+20)
+            let region = MKCoordinateRegion(center: sSelf.midpoint(points[0], points[points.count-1]), span: span)
             sSelf.mapView.setRegion(region, animated: true)
         }
         lastOverlay = geodesic
+    }
+    
+    private func midpoint(_ a: CLLocationCoordinate2D, _ b: CLLocationCoordinate2D) -> CLLocationCoordinate2D {
+        let longA = a.longitude * Double.pi / 180
+        let longB = b.longitude * Double.pi / 180
+        
+        let latA = a.latitude * Double.pi / 180
+        let latB = b.latitude * Double.pi / 180
+        
+        let deltaLong = longB - longA
+        let x = cos(latB) * cos(deltaLong)
+        let y = cos(latB) * sin(deltaLong)
+        
+        let lat3 = atan2( sin(latA) + sin(latB), sqrt((cos(latA) + x) * (cos(latA) + x) + y * y) )
+        let long3 = longA + atan2(y, cos(latA) + x)
+        
+        return CLLocationCoordinate2D(latitude: lat3 * 180 / Double.pi, longitude: long3 * 180 / Double.pi)
+        
     }
     
     private func convertRouteToAirports(route: [Route]) -> [Airport] {
@@ -174,5 +195,12 @@ private extension UIViewController {
 }
 
 extension ViewController: MKMapViewDelegate {
-    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = .red
+        renderer.lineWidth = 2
+        renderer.lineJoin = .round
+        renderer.lineCap = .round
+        return renderer
+    }
 }
