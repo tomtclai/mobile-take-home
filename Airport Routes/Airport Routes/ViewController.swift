@@ -36,6 +36,8 @@ class ViewController: UIViewController {
     // IBActions
     @IBAction func searchTapped() {
         guard let routeManager = routeManager else { return }
+        originField.resignFirstResponder()
+        destinationField.resignFirstResponder()
         guard let origin = originField.text, !origin.isEmpty else {
                 originField.shake()
                 presentAlert(title: UserStrings.Alert.tryAgain, message: UserStrings.Alert.typeAirportCode)
