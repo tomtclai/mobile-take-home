@@ -31,13 +31,13 @@
                                                         <rect key="frame" x="16" y="8" width="141" height="36"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SFO" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VCx-11-zIv">
                                                         <rect key="frame" x="167" y="8" width="141" height="36"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no"/>
                                                     </textField>
                                                 </subviews>
                                                 <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>

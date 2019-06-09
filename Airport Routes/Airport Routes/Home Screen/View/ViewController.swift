@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         loadData()
         mapView.delegate = self
-    }
+     }
     
     // IBActions
     @IBAction func searchTapped() {
@@ -83,17 +83,11 @@ class ViewController: UIViewController {
             mapView.removeOverlays(lastOverlay)
         }
         mapView.addOverlays(geodesic, level: .aboveRoads)
-        let latA = points[0].latitude
-        let latB = points[points.count-1].latitude
-        let longA = points[0].longitude
-        let longB = points[points.count-1].longitude
-        let latDelta = latA - latB
-        let longDelta = longA - longB
         UIView.animate(withDuration: 0.2) { [weak self] in
             guard let sSelf = self else { return }
-            let span = MKCoordinateSpan(latitudeDelta: abs(latDelta), longitudeDelta: abs(longDelta))
-            let region = MKCoordinateRegion(center: points[(points.count-1)/2], span: span)
-            sSelf.mapView.setRegion(region, animated: true)
+            
+            let lineRect = geodesic.reduce(geodesic[0].boundingMapRect, { $0.union($1.boundingMapRect) })
+            sSelf.mapView.setVisibleMapRect(lineRect, animated: true)
         }
         lastOverlay = geodesic
     }

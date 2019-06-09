@@ -242,14 +242,13 @@
 		778EC9EA22AC1120001DD658 /* Airport Routes */ = {
 			isa = PBXGroup;
 			children = (
+				77D568D922AD13C8008B3A64 /* Home Screen */,
 				7765843622AC3DD200E8D9F8 /* Manager */,
 				77601ADC22AC1FF8002A6168 /* Utilities */,
 				77601AD922AC1FBD002A6168 /* Service */,
 				77601AD622AC1E5D002A6168 /* Model */,
 				778EC9EB22AC1120001DD658 /* AppDelegate.swift */,
-				778EC9ED22AC1120001DD658 /* ViewController.swift */,
 				7765843B22AC5AB300E8D9F8 /* UserStrings.swift */,
-				778EC9EF22AC1120001DD658 /* Main.storyboard */,
 				778EC9F222AC1124001DD658 /* Assets.xcassets */,
 				778EC9F422AC1124001DD658 /* LaunchScreen.storyboard */,
 				778EC9F722AC1124001DD658 /* Info.plist */,
@@ -282,6 +281,31 @@
 				77D568D622AC96A3008B3A64 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77D568D822AD13B6008B3A64 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				778EC9ED22AC1120001DD658 /* ViewController.swift */,
+				778EC9EF22AC1120001DD658 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		77D568D922AD13C8008B3A64 /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				77D568DA22AD13D2008B3A64 /* View Model */,
+				77D568D822AD13B6008B3A64 /* View */,
+			);
+			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		77D568DA22AD13D2008B3A64 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
