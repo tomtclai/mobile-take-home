@@ -36,7 +36,7 @@ class RouteManager: RouteManagerProtocol {
         self.airports = airports
     }
     
-    class DikstraColumn {
+    class DijkstraColumn {
         var vertex: Airport
         var visited: Bool
         var path: Route?
@@ -66,22 +66,22 @@ class RouteManager: RouteManagerProtocol {
         guard let destination = airports.byAirportCode[destCode] else { completion(.failure(.noSuchAirport(destCode)))
             return
         }
-        let dikstraTable: [String: DikstraColumn] = airports.allAirports.reduce([String: DikstraColumn]()) { dict, airport in
+        let dijkstraTable: [String: DijkstraColumn] = airports.allAirports.reduce([String: DijkstraColumn]()) { dict, airport in
             var dictionary = dict
-            dictionary[airport.iata3] = DikstraColumn(vertex: airport)
+            dictionary[airport.iata3] = DijkstraColumn(vertex: airport)
             return dictionary
         }
         
         var airportToVisit = [origin.iata3]
-        dikstraTable[originCode]!.distance = 0
+        dijkstraTable[originCode]!.distance = 0
         while !airportToVisit.isEmpty {
             
             let source = airportToVisit.removeFirst()
             
-            guard let dikstraSource = dikstraTable[source], !dikstraSource.visited else {
+            guard let dijkstraSource = dijkstraTable[source], !dijkstraSource.visited else {
                 continue
             }
-            dikstraTable[source]!.visited = true
+            dijkstraTable[source]!.visited = true
             
             guard let routesFromVertex = routes.byOrigin[source] else {
                 continue
@@ -96,24 +96,24 @@ class RouteManager: RouteManagerProtocol {
             airportToVisit.append(contentsOf: destinations)
             
             for route in routesWithRealAirportsFromVertex {
-                guard let dikstraSource = dikstraTable[route.origin] else {
+                guard let dijkstraSource = dijkstraTable[route.origin] else {
                     print("FIXME: Route dataset contains airport code \(route.origin) but it is not in the airport dataset")
                         continue
                 }
-                guard let dikstraDest = dikstraTable[route.destination] else {
+                guard let dijkstraDest = dijkstraTable[route.destination] else {
                     print("FIXME: Route dataset contains airport code \(route.destination) but it is not in the airport dataset")
                         continue
                 }
-                if dikstraDest.distance > dikstraSource.distance + 1 {
-                    dikstraTable[route.destination]!.distance = dikstraSource.distance + 1
-                    dikstraTable[route.destination]!.path = route
+                if dijkstraDest.distance > dijkstraSource.distance + 1 {
+                    dijkstraTable[route.destination]!.distance = dijkstraSource.distance + 1
+                    dijkstraTable[route.destination]!.path = route
                 }
             }
         }
         
         var currIndex = destination.iata3
         var entireRoute = [Route]()
-        while let path = dikstraTable[currIndex]?.path {
+        while let path = dijkstraTable[currIndex]?.path {
             entireRoute.insert(path, at: 0)
             currIndex = path.origin
         }
