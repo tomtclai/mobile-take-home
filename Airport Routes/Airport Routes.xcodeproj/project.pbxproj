@@ -154,9 +154,9 @@
 				77601ADA22AC1FE1002A6168 /* CSVReader.swift */,
 				77D568E222AD171F008B3A64 /* TypeAlias.swift */,
 				77601ADD22AC2184002A6168 /* CSVReaderTests.swift */,
+				7765841E22AC35D400E8D9F8 /* FakeCSVReader.swift */,
 				7765843D22AC66C300E8D9F8 /* String+CSVQuotes.swift */,
 				7765843F22AC66E800E8D9F8 /* String+CSVQuotesTests.swift */,
-				7765841E22AC35D400E8D9F8 /* FakeCSVReader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";

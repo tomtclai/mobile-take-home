@@ -118,7 +118,7 @@ class HomeMapViewModel: HomeMapViewModelProtocol {
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
             annotation.title = "\(index+1). \(airport.name) (\(airport.iata3))"
-            annotation.subtitle = airport.country
+            annotation.subtitle = "\(airport.city), \(airport.country)"
             return annotation
         }
     }

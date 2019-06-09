@@ -12,6 +12,7 @@ class AppCoordinator {
     let navigationController: UINavigationController
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        navigationController.navigationBar.barStyle = .black
     }
     
     func start() {

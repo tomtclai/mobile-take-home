@@ -22,11 +22,16 @@ class HomeMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = UserStrings.Screens.flightRoutes
         viewModel.viewDidLoad()
         mapView.delegate = self
+        [originField, destinationField].forEach { $0?.delegate = self }
         setupViewModel()
     }
 
@@ -114,5 +119,19 @@ private extension UIViewController {
 extension HomeMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         return viewModel.overlayRenderer(overlay: overlay)
+    }
+}
+
+extension HomeMapViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case originField:
+            destinationField.becomeFirstResponder()
+        case destinationField:
+            searchTapped()
+        default:
+            break
+        }
+        return true
     }
 }
