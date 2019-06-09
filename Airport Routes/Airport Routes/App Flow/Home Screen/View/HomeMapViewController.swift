@@ -59,18 +59,16 @@ class HomeMapViewController: UIViewController {
         })
     }
     
+    @IBAction func exchangeButton() {
+        swap(&originField.text, &destinationField.text)
+    }
+    
     private var lastOverlay: [MKOverlay]?
     private func addOverlaysToMap(overlays: [MKOverlay]) {
         if let lastOverlay = lastOverlay {
             mapView.removeOverlays(lastOverlay)
         }
         mapView.addOverlays(overlays, level: .aboveRoads)
-        UIView.animate(withDuration: 0.2) { [weak self] in
-            guard let sSelf = self else { return }
-
-            let lineRect = overlays.reduce(overlays[0].boundingMapRect, { $0.union($1.boundingMapRect) })
-            sSelf.mapView.setVisibleMapRect(lineRect, animated: true)
-        }
         lastOverlay = overlays
     }
     
@@ -80,6 +78,7 @@ class HomeMapViewController: UIViewController {
             mapView.removeAnnotations(lastAnnotations)
         }
         mapView.addAnnotations(annotations)
+        mapView.showAnnotations(annotations, animated: true)
         lastAnnotations = annotations
     }
     

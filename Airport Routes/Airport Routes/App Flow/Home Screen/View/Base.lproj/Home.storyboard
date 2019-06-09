@@ -24,22 +24,33 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="900" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="20" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ya9-bs-Ieg">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="20" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bM9-Il-1o3">
-                                                <rect key="frame" x="8" y="14" width="324" height="52"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="900" verticalCompressionResistancePriority="20" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bM9-Il-1o3">
+                                                <rect key="frame" x="8" y="8" width="324" height="64"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="LAX" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rfJ-HN-iGR">
-                                                        <rect key="frame" x="16" y="8" width="141" height="36"/>
+                                                        <rect key="frame" x="16" y="8" width="119" height="48"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no"/>
                                                     </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="258" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAf-ts-WEs">
+                                                        <rect key="frame" x="145" y="8" width="34" height="48"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                        <state key="normal" title="🔄"/>
+                                                        <connections>
+                                                            <action selector="exchangeButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="BmO-1L-lis"/>
+                                                        </connections>
+                                                    </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SFO" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VCx-11-zIv">
-                                                        <rect key="frame" x="167" y="8" width="141" height="36"/>
+                                                        <rect key="frame" x="189" y="8" width="119" height="48"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no"/>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="VCx-11-zIv" firstAttribute="width" secondItem="rfJ-HN-iGR" secondAttribute="width" id="ChE-AL-pSA"/>
+                                                </constraints>
                                                 <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="400" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="200" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2S-5x-xg7">

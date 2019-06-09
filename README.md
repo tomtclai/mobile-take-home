@@ -21,9 +21,9 @@ Some airports codes are in the routes.csv but not in airport.csv.. I was trying 
 
 ## Future Improvments
 
-Right now, when search is tapped, the map is zoomed so that the route fits on the display. But there is little to no padding - the line touches the edge of the screen.
+Right now, when search is tapped, the map is zoomed so that the route fits on the display. But if the route is too long (ICN-CDG) it doesn't fit on the iPhone anymore.
 
-I would display the entire route (stops in the middle) on the map
+I was trying to turn on the 3D globe map like in the maps app but no luck.
 
 ## Useful Routes for testing
 - LAS PVG (1 stop)
